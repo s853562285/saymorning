@@ -24,7 +24,7 @@ birthdays = os.environ["BIRTHDAY"].split(',')
 
 # 获取天气和温度
 def get_weather(city):
-    url = "https://api.seniverse.com/v3/weather/daily.json?key=i2ljafer9jmgrnyj&location=xian&language=zh-Hans&unit=c&start=0&days=1" + city
+    url = "https://api.seniverse.com/v3/weather/daily.json?key=i2ljafer9jmgrnyj&location={}&language=zh-Hans&unit=c&start=0&days=1".format(city)
     res = requests.get(url).json()
     weather = res['results'][0]['daily'][0]
     return weather['text_night'], math.floor(weather['high']),math.floor(weather['low']),weather['wind_scale']
