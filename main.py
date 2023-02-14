@@ -21,7 +21,7 @@ citys = os.environ["CITY"].split(',')
 solarys = os.environ["SOLARY"].split(',')
 start_dates = os.environ["START_DATE"].split(',')
 birthdays = os.environ["BIRTHDAY"].split(',')
-wea_key = os.environ["WEA_ID"].split(',')
+wea_key = os.environ["WEA_ID"]
 
 
 # 获取天气和温度
