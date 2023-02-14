@@ -27,7 +27,7 @@ def get_weather(city):
     url = "https://api.seniverse.com/v3/weather/daily.json?key=i2ljafer9jmgrnyj&location={}&language=zh-Hans&unit=c&start=0&days=1".format(city)
     res = requests.get(url).json()
     weather = res['results'][0]['daily'][0]
-    return weather['text_night'], math.floor(weather['high']),math.floor(weather['low']),weather['wind_scale']
+    return weather['text_night'], weather['high'],weather['low'],weather['wind_scale']
 
 
 # 当前城市、日期
@@ -82,7 +82,7 @@ for i in range(len(user_ids)):
         "date": {"value": "今天是：{}".format(dat), "color": get_random_color()},
         "city": {"value": "当前城市：{}".format(cit), "color": get_random_color()},
         "weather": {"value": "今日天气：{}".format(wea), "color": get_random_color()},
-        "temperature": {"value": "最高温度：{} 最低温度：{} 风力：{}".format(high,low,wind_scale), "color": get_random_color()},
+        "temperature": {"value": "最高温度：{}℃ ，最低温度：{}℃， 风力：{}".format(high,low,wind_scale), "color": get_random_color()},
         "love_days": {"value": "今天是我们在一起的第{}天,爱你哟~".format(get_count(start_dates[i])), "color": get_random_color()},
         "birthday_left": {"value": "还有{}天就是你的生日啦！".format(get_birthday(birthdays[i])), "color": get_random_color()},
         "solary": {"value": "距离发工资还有{}天,挣钱的日子辛苦了~".format(get_solary(solarys[i])), "color": get_random_color()},
