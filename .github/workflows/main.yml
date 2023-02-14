@@ -2,7 +2,7 @@ name: morning
 on:
   schedule:
   # UTC 时间的零点，北京时间的八点。但是由于 Github 同一时间任务太多，因此会有延迟
-  - cron:  '26 08 * * *'
+  - cron:  '00 23 * * *'
   workflow_dispatch:
 
 jobs:
@@ -28,6 +28,7 @@ jobs:
       APP_SECRET: ${{ secrets.APP_SECRET }}
       USER_ID: ${{ secrets.USER_ID }}
       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+      WEA_ID: ${{ secrets.WEA_ID }}
       CITY: ${{ secrets.CITY }}
       START_DATE: ${{ secrets.START_DATE }}
       SOLARY: ${{ secrets.SOLARY }}
