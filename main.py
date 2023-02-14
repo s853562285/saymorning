@@ -3,11 +3,12 @@ import math
 import random
 import requests
 
-from datetime import date, datetime
+from datetime import date
+import datetime
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
 
-today = datetime.now()
+today = datetime.datetime.now()
 
 # 微信公众测试号ID和SECRET
 app_id = os.environ["APP_ID"]
@@ -37,14 +38,14 @@ def get_city_date(city):
 
 # 距离设置的日期过了多少天
 def get_count(start_date):
-    delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+    delta = today - datetime.datetime.strptime(start_date, "%Y-%m-%d")
     return delta.days
 
 
 # 距离发工资还有多少天
 def get_solary(solary):
-    next = datetime.strptime(str(date.today().year) + "-" + str(date.today().month) + "-" + solary, "%Y-%m-%d")+datetime.timedelta(days=1)
-    if next < datetime.now():
+    next = datetime.datetime.strptime(str(date.today().year) + "-" + str(date.today().month) + "-" + solary, "%Y-%m-%d")+datetime.timedelta(days=1)
+    if next < datetime.datetime.now():
         if next.month == 12:
             next = next.replace(year=next.year + 1)
         next = next.replace(month=(next.month + 1) % 12)
@@ -53,8 +54,8 @@ def get_solary(solary):
 
 # 距离过生日还有多少天
 def get_birthday(birthday):
-    next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")+datetime.timedelta(days=1)
-    if next < datetime.now():
+    next = datetime.datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")+datetime.timedelta(days=1)
+    if next < datetime.datetime.now():
         next = next.replace(year=next.year + 1)
     return (next - today).days
 
