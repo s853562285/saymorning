@@ -83,13 +83,13 @@ for i in range(len(user_ids)):
         "city": {"value": "当前城市：{}".format(cit), "color": get_random_color()},
         "weather": {"value": "今日天气：{}".format(wea), "color": get_random_color()},
         "temperature": {"value": "最高温度：{} 最低温度：{} 风力：{}".format(high,low,wind_scale), "color": get_random_color()},
-        "love_days": {"value": "今天是我们在一起的第{}天".format(get_count(start_dates[i])), "color": get_random_color()},
-        "birthday_left": {"value": "距离她的生日还有{}天".format(get_birthday(birthdays[i])), "color": get_random_color()},
-        "solary": {"value": "距离发工资还有{}天".format(get_solary(solarys[i])), "color": get_random_color()},
+        "love_days": {"value": "今天是我们在一起的第{}天,爱你哟~".format(get_count(start_dates[i])), "color": get_random_color()},
+        "birthday_left": {"value": "还有{}天就是你的生日啦！".format(get_birthday(birthdays[i])), "color": get_random_color()},
+        "solary": {"value": "距离发工资还有{}天,挣钱的日子辛苦了~".format(get_solary(solarys[i])), "color": get_random_color()},
         "words": {"value": get_words(), "color": get_random_color()}
     }
     if get_birthday(birthdays[i]) == 0:
-        data["birthday_left"]['value'] = "今天是她的生日哦，快去一起甜蜜吧"
+        data["birthday_left"]['value'] = "今天是你的生日哦，要开心幸福呀"
     if get_solary(solarys[i]) == 0:
         data["solary"]['value'] = "今天发工资啦，快去犒劳一下自己吧"
     res = wm.send_template(user_ids[i], template_ids[i], data)
