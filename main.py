@@ -32,7 +32,7 @@ def get_weather(city):
 
 # 当前城市、日期
 def get_city_date(city):
-    return city, today.date().strftime("%Y-%m-%d")
+    return city, today.date().strftime("%m"),today.date().strftime("%d")
 
 
 # 距离设置的日期过了多少天
@@ -77,13 +77,12 @@ wm = WeChatMessage(client)
 
 for i in range(len(user_ids)):
     wea, high,low,wind_scale, = get_weather(citys[i])
-    cit, dat = get_city_date(citys[i])
+    cit, mon,day = get_city_date(citys[i])
     data = {
-        "date": {"value": "今天是：{}".format(dat), "color": get_random_color()},
-        "city": {"value": "当前城市：{}".format(cit), "color": get_random_color()},
-        "weather": {"value": "今日天气：{}".format(wea), "color": get_random_color()},
+        "date": {"value": "今天是{}月{}号".format(mon,day), "color": get_random_color()},
+        "love_days": {"value": "是我们在一起的第{}天,爱你哟~".format(get_count(start_dates[i])), "color": get_random_color()},
+        "weather": {"value": "{}今天的天气：{}".format(cit,wea), "color": get_random_color()},
         "temperature": {"value": "最高温度：{}℃ ，最低温度：{}℃， 风力：{}".format(high,low,wind_scale), "color": get_random_color()},
-        "love_days": {"value": "今天是我们在一起的第{}天,爱你哟~".format(get_count(start_dates[i])), "color": get_random_color()},
         "birthday_left": {"value": "还有{}天就是你的生日啦！".format(get_birthday(birthdays[i])), "color": get_random_color()},
         "solary": {"value": "距离发工资还有{}天,挣钱的日子辛苦了~".format(get_solary(solarys[i])), "color": get_random_color()},
         "words": {"value": get_words(), "color": get_random_color()}
