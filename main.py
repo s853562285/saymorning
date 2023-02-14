@@ -21,11 +21,12 @@ citys = os.environ["CITY"].split(',')
 solarys = os.environ["SOLARY"].split(',')
 start_dates = os.environ["START_DATE"].split(',')
 birthdays = os.environ["BIRTHDAY"].split(',')
+wea_key = os.environ["WEA_ID"].split(',')
 
 
 # 获取天气和温度
 def get_weather(city):
-    url = "https://api.seniverse.com/v3/weather/daily.json?key=i2ljafer9jmgrnyj&location={}&language=zh-Hans&unit=c&start=0&days=1".format(city)
+    url = "https://api.seniverse.com/v3/weather/daily.json?key={}&location={}&language=zh-Hans&unit=c&start=0&days=1".format(wea_key,city)
     res = requests.get(url).json()
     weather = res['results'][0]['daily'][0]
     return weather['text_night'], weather['high'],weather['low'],weather['wind_scale']
