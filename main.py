@@ -43,7 +43,7 @@ def get_count(start_date):
 
 # 距离发工资还有多少天
 def get_solary(solary):
-    next = datetime.strptime(str(date.today().year) + "-" + str(date.today().month) + "-" + solary, "%Y-%m-%d")
+    next = datetime.strptime(str(date.today().year) + "-" + str(date.today().month) + "-" + solary, "%Y-%m-%d").timedelta(days=1)
     if next < datetime.now():
         if next.month == 12:
             next = next.replace(year=next.year + 1)
@@ -53,7 +53,7 @@ def get_solary(solary):
 
 # 距离过生日还有多少天
 def get_birthday(birthday):
-    next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+    next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d").timedelta(days=1)
     if next < datetime.now():
         next = next.replace(year=next.year + 1)
     return (next - today).days
