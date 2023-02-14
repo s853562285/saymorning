@@ -28,7 +28,7 @@ wea_key = os.environ["WEA_ID"].split(',')
 def get_weather(city):
     url = "https://api.seniverse.com/v3/weather/daily.json?key={}&location={}&language=zh-Hans&unit=c&start=0&days=1".format(wea_key,city)
     res = requests.get(url).json()
-    println(res)
+    print(res)
     weather = res['results'][0]['daily'][0]
     return weather['text_night'], weather['high'],weather['low'],weather['wind_scale']
 
