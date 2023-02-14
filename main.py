@@ -24,10 +24,10 @@ birthdays = os.environ["BIRTHDAY"].split(',')
 
 # 获取天气和温度
 def get_weather(city):
-    url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+    url = "https://api.seniverse.com/v3/weather/daily.json?key=i2ljafer9jmgrnyj&location=xian&language=zh-Hans&unit=c&start=0&days=1" + city
     res = requests.get(url).json()
-    weather = res['data']['list'][0]
-    return weather['weather'], math.floor(weather['temp'])
+    weather = res['results'][0]['daily'][0]
+    return weather['text_night'], math.floor(weather['high']),math.floor(weather['low']),weather['wind_scale']
 
 
 # 当前城市、日期
@@ -76,14 +76,14 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
 for i in range(len(user_ids)):
-    wea, tem = get_weather(citys[i])
+    wea, high,low,wind_scale, = get_weather(citys[i])
     cit, dat = get_city_date(citys[i])
     data = {
-        "date": {"value": "今日日期：{}".format(dat), "color": get_random_color()},
+        "date": {"value": "今天是：{}".format(dat), "color": get_random_color()},
         "city": {"value": "当前城市：{}".format(cit), "color": get_random_color()},
         "weather": {"value": "今日天气：{}".format(wea), "color": get_random_color()},
-        "temperature": {"value": "当前温度：{}".format(tem), "color": get_random_color()},
-        "love_days": {"value": "今天是你们在一起的第{}天".format(get_count(start_dates[i])), "color": get_random_color()},
+        "temperature": {"value": "最高温度：{} 最低温度：{} 风力：{}".format(high,low,wind_scale), "color": get_random_color()},
+        "love_days": {"value": "今天是我们在一起的第{}天".format(get_count(start_dates[i])), "color": get_random_color()},
         "birthday_left": {"value": "距离她的生日还有{}天".format(get_birthday(birthdays[i])), "color": get_random_color()},
         "solary": {"value": "距离发工资还有{}天".format(get_solary(solarys[i])), "color": get_random_color()},
         "words": {"value": get_words(), "color": get_random_color()}
